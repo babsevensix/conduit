@@ -1,1 +1,418 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./variables";
+
+// CONDUIT STYLES //
+
+.logo-font {
+  font-family: $font-family-logo;
+}
+
+// this allows us to have the flush footer that extends with viewport
+html {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+body {
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #373a3c;
+  background-color: #fff;
+}
+
+.navbar-nav{
+  .nav-item{
+    .nav-link{
+      @apply text-[#aaa];
+
+      &:hover {
+         @apply text-[#555] transition duration-500;
+
+      }
+    }
+  }
+}
+// Set the navbar's logo to the conduit logo font & large size
+.navbar-brand {
+  font-family: $font-family-logo;
+  font-size: 1.5rem !important;
+  padding-top: 0rem !important;
+  margin-right: 2rem !important;
+  color: $brand-primary !important;
+  // margin-bottom:40px;
+}
+// set a smooth transition for nav-link hover effects
+.nav-link:hover {
+  transition: 0.1s all;
+}
+
+// create style for nav-link pills that do an outline instead of block
+.nav-pills.outline-active {
+  .nav-link {
+    border-radius: 0px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: #aaa;
+    &:hover {
+      color: #555;
+    }
+
+    &.active {
+      background: #fff !important;
+      border-bottom: 2px solid $brand-primary !important;
+      color: $brand-primary !important;
+    }
+  }
+}
+
+footer {
+  background: #f3f3f3;
+  margin-top: 3rem;
+  padding: 1rem 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  .attribution {
+    vertical-align: top;
+    margin-left: 10px;
+    font-size: 0.8rem;
+    color: #bbb;
+    font-weight: 300;
+  }
+}
+
+// general error handling style
+.error-messages {
+  color: $brand-danger !important;
+  font-weight: bold;
+}
+
+// This is used on homepage & post page
+// Basically a pretty wrapper for H1 at top
+.banner {
+  color: #fff;
+  background: #333;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  h1 {
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0px;
+  }
+}
+
+// Auto offset from top for pages
+.container.page {
+  margin-top: 1.5rem;
+}
+
+// Link that doesn't modify color/style of text
+.preview-link {
+  color: inherit !important;
+
+  &:hover {
+    text-decoration: inherit !important;
+  }
+}
+
+// Generic author information/date container
+.post-meta {
+  display: block;
+  position: relative;
+  font-weight: 300;
+
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+    width: 32px;
+    border-radius: 30px;
+  }
+
+  .info {
+    margin: 0 1.5rem 0 0.3rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1rem;
+
+    .author {
+      display: block;
+      font-weight: 500 !important;
+    }
+    .date {
+      color: #bbb;
+      font-size: 0.8rem;
+      display: block;
+    }
+  }
+}
+
+// Preview links inside post previews
+.post-preview {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 0;
+
+  .post-meta {
+    margin: 0 0 1rem 0;
+  }
+  .preview-link {
+    h1 {
+      font-weight: 700 !important;
+      font-size: 2rem !important;
+    }
+    p {
+      font-family: "Source Serif Pro", serif;
+      margin-bottom: 0;
+    }
+    // "Read more" span
+    span {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #bbb;
+    }
+  }
+}
+
+// Counter for buttons
+.btn .counter {
+  font-size: 0.8rem !important;
+}
+
+.navbar {
+  @apply sm:rounded relative px-2 py-4;
+}
+
+.container {
+  @apply m-auto px-[15px] xl:max-w-[1140px] lg:max-w-[940px] md:max-w-[720px] sm:max-w-[576px];
+  &.page {
+    @apply mt-4;
+  }
+}
+
+.navbar-brand {
+  @apply float-left py-1 ms-4;
+}
+
+.pull-xs-right {
+  @apply float-right;
+}
+
+.nav {
+  @apply pl-0 mb-0 list-none;
+}
+
+.navbar-nav {
+  .nav-item {
+    @apply float-left text-slate-300 hover:text-slate-700 transition duration-200 hover:cursor-pointer;
+    & + .nav-item {
+      @apply ml-4;
+    }
+  }
+}
+
+.row {
+  @apply flex flex-wrap mx-[-15px];
+}
+.col-xs-12,
+.col-md-6,
+.col-md-9,
+.col-md-3 {
+  @apply relative min-h-1 px-[0.9375rem];
+}
+
+.col-xs-12 {
+  @apply max-w-full flex-grow-0 flex-shrink-0 basis-[100%];
+}
+
+.col-md-6 {
+  @apply md:relative md:min-h-[1px] md:px-[15px] md:max-w-[50%] md:flex-grow-0 md:flex-shrink-0 md:basis-[50%];
+}
+
+.col-md-9 {
+  @apply md:relative md:min-h-[1px] md:px-[15px] md:max-w-[75%] md:flex-grow-0 md:flex-shrink-0 md:basis-[75%];
+}
+
+.col-md-3 {
+  @apply md:relative md:min-h-[1px] md:px-[15px] md:max-w-[25%] md:flex-grow-0 md:flex-shrink-0 md:basis-[25%];
+}
+
+.col-md-offset-3 {
+  @apply md:ml-[25%];
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+h1 {
+  @apply text-4xl;
+}
+h2 {
+  font-size: 2rem;
+}
+a {
+  color: #5cb85c;
+  text-decoration: none;
+}
+.text-xs-center {
+  @apply text-center;
+}
+
+.nav-pills {
+  .nav-item {
+    @apply float-left;
+    & + .nav-item {
+      @apply ml-4;
+    }
+  }
+}
+
+.label-default {
+  @apply bg-slate-400 text-white text-xs p-[0.1rem] whitespace-nowrap mr-[3px] mb-[0.2rem] inline-block;
+}
+
+.label {
+  @apply px-1 py-[0.4rem] text-[75%] text-white whitespace-nowrap align-baseline;
+  &.label-pill {
+    @apply px-[0.6rem] rounded-3xl font-bold hover:bg-slate-500 transition duration-500;
+  }
+}
+
+fieldset {
+  @apply min-w-0 m-0 border-0;
+}
+.form-group {
+  @apply mb-4;
+}
+
+fieldset,
+legend,
+td,
+th {
+  @apply p-0;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  line-height: inherit;
+  border-radius: 0;
+}
+.form-control,
+.form-control-file,
+.form-control-range {
+  display: block;
+}
+.form-control {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.form-control-lg,
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .btn {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.33333;
+  border-radius: 0.3rem;
+}
+
+.btn,
+.btn-link,
+.dropdown-item {
+  font-weight: 400;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+.btn-group-lg > .btn,
+.btn-lg {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.33333;
+  border-radius: 0.3rem;
+}
+.btn-outline-secondary {
+  @apply text-[#ccc] bg-none bg-transparent border-[#ccc]
+   hover:text-white hover:bg-[#ccc] hover:border-[#ccc] transition duration-300;
+}
+.btn-group-sm > .btn,
+.btn-sm {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+.btn-outline-primary {
+  @apply text-conduit bg-transparent border-conduit bg-none hover:text-[#fff] hover:bg-conduit hover:border-conduit transition duration-300;
+}
+
+.card {
+  @apply relative block bg-white border border-solid border-[#e5e5e5] rounded mb-3;
+  .card-block {
+    @apply p-5;
+  }
+  .card-footer,
+  .card-header {
+    @apply py-3 px-5 bg-[#f5f5f5];
+    // padding: 0.75rem 1.25rem;
+    // background-color: #f5f5f5;
+  }
+  .card-footer {
+    border-top: 1px solid #e5e5e5;
+    &:last-child{
+      border-radius: 0 0 0.25rem 0.25rem;
+    }
+  }
+
+}
