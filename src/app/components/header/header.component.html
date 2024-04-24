@@ -1,18 +1,33 @@
 <nav class="navbar navbar-light">
   <div class="container ms-0 !pl-0 m-0 flex flex-row w-full items-center justify-between">
-    <a class="navbar-brand text-conduit " >conduit</a>
+    <a class="navbar-brand text-conduit hover:cursor-pointer" (click)="navigationService.pageToView.set('Home')">conduit</a>
     <ul class="nav navbar-nav pull-xs-right">
-      <li class="nav-item">
-        <a class="nav-link" >
-          <i class="ion-compose"></i>&nbsp;New Post
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" >Sign up</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Settings</a>
-      </li>
+      @if( userService.Token ){
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigationService.pageToView.set('NewPost')">
+            <i class="ion-compose"></i>&nbsp;New Post
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onSignOut()">Sign out</a>
+        </li>
+      } @else {
+        <li class="nav-item">
+          <a class="nav-link" (click)="onSignUp()">Sign up</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" (click)="onSignIn()">Sign in</a>
+        </li>
+
+        
+        
+      }
+      
+      
       <!--           <li class="nav-item active">
             <a class="nav-link" href="index.html">Home</a>
           </li> -->

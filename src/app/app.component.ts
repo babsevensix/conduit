@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
@@ -8,6 +8,7 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { PostComponent } from "./pages/post/post.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
+import { NavigationService } from './services/navigation.service';
 
 @Component({
     selector: 'app-root',
@@ -18,4 +19,7 @@ import { SettingsComponent } from "./pages/settings/settings.component";
 })
 export class AppComponent {
   title = 'conduit';
+
+  navigation = inject(NavigationService);
+  
 }

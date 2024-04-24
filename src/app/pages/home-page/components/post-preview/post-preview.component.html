@@ -1,0 +1,18 @@
+<div class="post-preview">
+    <div class="post-meta">
+      <a (click)="onShowProfile()"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+      <div class="info">
+        <a (click)="onShowProfile()" class="author">{{article().author.username}}</a>
+        <span class="date">{{article().createdAt | date:'MMMM dd,yyyy'}}</span>
+      </div>
+      <button class="btn btn-outline-primary btn-sm pull-xs-right" (click)="onSetFavorite(article().slug)">
+        <i class="ion-heart"></i> {{article().favoritesCount}}
+      </button>
+    </div>
+    <a (click)="onShowPost()" class="preview-link">
+      <h1>{{article().title}}</h1>
+      <p>{{article().description}}</p>
+      <span>Read more...</span>
+    </a>
+  </div>
+

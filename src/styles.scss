@@ -5,6 +5,8 @@
 
 @import "./variables";
 
+@import 'ngx-toastr/toastr';
+
 // CONDUIT STYLES //
 
 .logo-font {
@@ -373,6 +375,9 @@ textarea {
   color: #fff;
   background-color: #5cb85c;
   border-color: #5cb85c;
+  &:disabled{
+    background-color: #a1daa1;
+  }
 }
 
 .btn-group-lg > .btn,

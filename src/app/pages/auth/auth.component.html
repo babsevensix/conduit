@@ -4,26 +4,35 @@
       <div class="row">
 
         <div class="col-md-6 col-md-offset-3 col-xs-12">
-          <h1 class="text-xs-center">Sign up</h1>
+          
+
+          <h1 class="text-xs-center">{{isSignInForm() ? 'Sign in' : 'Sign up'  }}</h1>
           <p class="text-xs-center">
-            <a href="#">Have an account?</a>
+            @if(isSignInForm()){
+              <a class="cursor-pointer" (click)="navigationService.pageToView.set('Register')">Need an account?</a>
+            } @else {
+              <a class="cursor-pointer" (click)="navigationService.pageToView.set('Login')">Have an account?</a>
+            }
           </p>
 
           <!--         <ul class="error-messages">
           <li>That email is already taken</li>
         </ul> -->
 
-          <form autocomplete="off">
+          <form autocomplete="off" [formGroup]="frmGrp" (ngSubmit)="onLoginRegisterUser()">
+            @if(!isSignInForm()){
+              <fieldset class="form-group">
+                <input class="form-control form-control-lg" formControlName="username" type="text" placeholder="Your Name" autocomplete="off" >
+              </fieldset>
+            }
+
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Your Name" autocomplete="off" >
+              <input class="form-control form-control-lg" formControlName="email" type="text" placeholder="Email" autocomplete="off">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Email" autocomplete="off">
+              <input class="form-control form-control-lg" formControlName="password" type="password" placeholder="Password" autocomplete="off">
             </fieldset>
-            <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="password" placeholder="Password" autocomplete="off">
-            </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right">
+            <button type="submit" class="btn btn-lg btn-primary pull-xs-right" [disabled]="frmGrp.invalid">
               Sign up
             </button>
           </form>

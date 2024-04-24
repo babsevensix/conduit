@@ -5,12 +5,15 @@
       <div class="row">
 
         <div class="col-md-10 col-md-offset-1 col-xs-12">
-          <form>
+          <form [formGroup]="formGrp" (ngSubmit)="onCreateNewPost()">
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Post Title">
+              <input class="form-control form-control-lg" formControlName="title" type="text" placeholder="Post Title">
             </fieldset>
             <fieldset class="form-group">
-              <textarea class="form-control" rows="8" placeholder="Write your post (in markdown)"></textarea>
+              <input class="form-control form-control-lg" formControlName="description" type="text" placeholder="Post Description">
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea class="form-control" formControlName="body" rows="8" placeholder="Write your post (in markdown)"></textarea>
             </fieldset>
             <fieldset class="form-group">
               <input class="form-control" type="text" placeholder="Enter tags">
@@ -20,7 +23,9 @@
                 <span class="label label-pill label-default"><i class="ion-close-round"></i> webdev</span>
               </div>
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right">
+            <button type="submit" 
+                    [disabled]="formGrp.invalid"
+                    class="btn btn-lg btn-primary pull-xs-right">
               Create Post
             </button>
           </form>
