@@ -1,0 +1,14 @@
+@if(articoli(); as articoliLocal){
+
+        
+    @for (articolo of articoliLocal; track $index) {
+
+      @defer (on viewport; on timer(5s)) {
+        <app-post-preview [article]="articolo"></app-post-preview>
+      } @placeholder {
+        <p>Caricamento in corso</p>
+      }
+
+      
+    }
+  }

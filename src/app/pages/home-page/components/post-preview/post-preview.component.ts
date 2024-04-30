@@ -5,11 +5,12 @@ import { ArticlesService } from '../../../../services/articles.service';
 import { ToastrService } from 'ngx-toastr';
 import { takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import { NavigationService } from '../../../../services/navigation.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-post-preview',
   standalone: true,
-  imports: [DatePipe,],
+  imports: [DatePipe,RouterLink],
   templateUrl: './post-preview.component.html',
   styleUrl: './post-preview.component.scss'
 })

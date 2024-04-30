@@ -1,4 +1,4 @@
-<app-header></app-header>
+
 
 <div class="home-page">
 
@@ -19,29 +19,16 @@
           <ul class="nav nav-pills outline-active">
             @if(userService.Token){
               <li class="nav-item">
-                <a class="nav-link disabled" href="#">Your Feed</a>
+                <a class="nav-link " [routerLinkActive]="'active'" [routerLink]="'feed'" routerLinkActive="router-link-active"  >Your Feed</a>
               </li>
             }
             <li class="nav-item">
-              <a class="nav-link active" href="#">Global Feed</a>
+              <a class="nav-link " [routerLinkActive]="'active'"  [routerLink]="'global'">Global Feed</a>
             </li>
           </ul>
         </div>
 
-        @if(articoli(); as articoliLocal){
-
-        
-          @for (articolo of articoliLocal.articles; track $index) {
-
-            @defer (on viewport; on timer(5s)) {
-              <app-post-preview [article]="articolo"></app-post-preview>
-            } @placeholder {
-              <p>Caricamento in corso</p>
-            }
-
-            
-          }
-        }
+        <router-outlet></router-outlet>
       </div>
 
       <div class="col-xs-12 col-md-3">
@@ -50,7 +37,7 @@
 
           <div class="tag-list">
             @for(tag of tagList(); track $index){
-              <a (click)="filterByTag(tag)" class="label label-pill label-default">{{tag}}</a>
+              <a [routerLink]="'/global/tag/' + tag" [routerLinkActive]="'active'" class="label label-pill label-default">{{tag}}</a>
             }
             
             
@@ -63,4 +50,3 @@
 
 </div>
 
-<app-footer></app-footer>

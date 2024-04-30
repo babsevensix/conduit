@@ -4,12 +4,17 @@
       <div class="info">
         <a (click)="onShowProfile()" class="author">{{article().author.username}}</a>
         <span class="date">{{article().createdAt | date:'MMMM dd,yyyy'}}</span>
+        @for(tag of article().tagList; track $index){
+          <span class="mx-3">{{tag}}</span>
+        }
+        
       </div>
-      <button class="btn btn-outline-primary btn-sm pull-xs-right" (click)="onSetFavorite(article().slug)">
+      <button class="btn btn-outline-primary btn-sm pull-xs-right" 
+        (click)="onSetFavorite(article().slug)">
         <i class="ion-heart"></i> {{article().favoritesCount}}
       </button>
     </div>
-    <a (click)="onShowPost()" class="preview-link">
+    <a [routerLink]="'/post/detail'" [queryParams]="{slug: article().slug}" class="preview-link">
       <h1>{{article().title}}</h1>
       <p>{{article().description}}</p>
       <span>Read more...</span>

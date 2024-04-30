@@ -1,4 +1,4 @@
-@switch (navigation.pageToView()) {
+<!-- @switch (navigation.pageToView()) {
     @case ('Home') {
         <app-home-page></app-home-page>
     }
@@ -17,8 +17,15 @@
     @case ('Profile') {
         <app-profile></app-profile>
     }
+} -->
+
+<app-header></app-header>
+
+@if(spinnerService.isLoading()){
+<div class="spinner">Caricamento in corso</div>
 }
+<router-outlet></router-outlet>
 
 
 
-<!-- <app-settings></app-settings> -->
+<app-footer></app-footer>

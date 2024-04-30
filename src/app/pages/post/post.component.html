@@ -1,6 +1,7 @@
-<app-header></app-header>
 
-@if(navigationService.articleSelected(); as article){
+<h1>SLUG: {{slug() }}</h1>
+
+@if(article(); as article){
 
 
   <div class="post-page">
@@ -12,15 +13,15 @@
 
         <div class="post-meta">
           <a href="profile.html">
-            <img [src]="article.author.image" /></a>
+            <img [src]="article.author?.image" /></a>
           <div class="info">
-            <a href="profile.html" class="author">{{article.author.username }}</a>
+            <a href="profile.html" class="author">{{article.author?.username }}</a>
             <span class="date">{{article.createdAt | date:'MMMM dd,yyyy'}}</span>
           </div>
           <button class="btn btn-sm btn-outline-secondary">
             <i class="ion-plus-round"></i>
             &nbsp;
-            Follow {{article.author.username}} 
+            Follow {{article.author?.username}} 
             <!--
               TODO: Da controllare
             <span class="counter">({{article.favoritesCount}})</span>
@@ -125,4 +126,4 @@
 
   </div>
 }
-<app-footer></app-footer>
+

@@ -1,10 +1,11 @@
 <nav class="navbar navbar-light">
   <div class="container ms-0 !pl-0 m-0 flex flex-row w-full items-center justify-between">
-    <a class="navbar-brand text-conduit hover:cursor-pointer" (click)="navigationService.pageToView.set('Home')">conduit</a>
+    <a class="navbar-brand text-conduit hover:cursor-pointer" 
+      [routerLink]="'/'">conduit</a>
     <ul class="nav navbar-nav pull-xs-right">
       @if( userService.Token ){
         <li class="nav-item">
-          <a class="nav-link" (click)="navigationService.pageToView.set('NewPost')">
+          <a class="nav-link" [routerLink]="'newpost'" [routerLinkActive]="'active'">
             <i class="ion-compose"></i>&nbsp;New Post
           </a>
         </li>
@@ -16,11 +17,11 @@
         </li>
       } @else {
         <li class="nav-item">
-          <a class="nav-link" (click)="onSignUp()">Sign up</a>
+          <a class="nav-link" [routerLink]="'register'" [routerLinkActive]="'active'">Sign up</a>
         </li>
   
         <li class="nav-item">
-          <a class="nav-link" (click)="onSignIn()">Sign in</a>
+          <a class="nav-link" [routerLink]="'sign-in'" [routerLinkActive]="'active'">Sign in</a>
         </li>
 
         

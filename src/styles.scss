@@ -299,6 +299,9 @@ a {
   @apply px-1 py-[0.4rem] text-[75%] text-white whitespace-nowrap align-baseline;
   &.label-pill {
     @apply px-[0.6rem] rounded-3xl font-bold hover:bg-slate-500 transition duration-500;
+    &.active{
+      @apply bg-slate-800;
+    }
   }
 }
 
@@ -421,3 +424,5 @@ textarea {
   }
 
 }
+
+

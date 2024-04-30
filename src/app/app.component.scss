@@ -1,0 +1,5 @@
+.spinner{
+    @apply fixed text-white top-0 left-0 w-full h-full flex items-center justify-center ;
+    background-color: rgba(61, 56, 56, 0.425);
+    z-index: 99999;
+}

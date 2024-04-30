@@ -9,6 +9,7 @@ import { PostComponent } from "./pages/post/post.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { NavigationService } from './services/navigation.service';
+import { SpinnerService } from './services/spinner.service';
 
 @Component({
     selector: 'app-root',
@@ -20,6 +21,7 @@ import { NavigationService } from './services/navigation.service';
 export class AppComponent {
   title = 'conduit';
 
-  navigation = inject(NavigationService);
+  spinnerService = inject(SpinnerService);
+
   
 }

@@ -54,4 +54,10 @@ export class ArticlesService {
         );
     }
 
+    getArticle(slug: string): Observable<ArticleResponseArticleEnvelope>{
+        
+
+        return this.httpClient.get<ArticleResponseArticleEnvelope>(
+            `http://localhost:5000/Articles/${slug}`);
+    }
 }
