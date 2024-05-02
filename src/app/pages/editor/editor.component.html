@@ -8,6 +8,9 @@
           <form [formGroup]="formGrp" (ngSubmit)="onCreateNewPost()">
             <fieldset class="form-group">
               <input class="form-control form-control-lg" formControlName="title" type="text" placeholder="Post Title">
+              @if(formGrp.controls['title'].hasError('required')){
+                <span class="error">Valore richiesto</span>
+              }
             </fieldset>
             <fieldset class="form-group">
               <input class="form-control form-control-lg" formControlName="description" type="text" placeholder="Post Description">

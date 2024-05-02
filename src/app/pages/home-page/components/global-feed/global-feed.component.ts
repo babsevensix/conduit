@@ -15,6 +15,7 @@ import { map, switchMap } from 'rxjs';
 })
 export class GlobalFeedComponent  {
   
+  private articleService = inject(ArticlesService);
 
   private activatedRoute = inject(ActivatedRoute);
 
@@ -25,26 +26,32 @@ export class GlobalFeedComponent  {
   private destroyRef = inject(DestroyRef);
 
   constructor() {
+    console.log('GlobalFeedComponent constructor', this.articleService);
     //console.log('CONSTRUCTOR  tag ' ,this.activatedRoute.params['tag']);
 
-    // this.activatedRoute.params.pipe(
-    //   switchMap(params => this.articleService.getArticles(params['tag'])),
-    //   takeUntilDestroyed(this.destroyRef)
-    // ).subscribe(
-    //   {
-    //     next: (risultato)=>{
-    //       this.articoli.set(risultato);
-    //     }
-    //   }
-    // );
-
-    this.activatedRoute.data.pipe(
-      map(datas => datas['articles'] as Article[])
-    ).subscribe({
-      next: (articles)=>{
-        this.articoli.set(articles);
+    
+    this.activatedRoute.params.pipe(
+      switchMap(params => this.articleService.getArticles(params['tag'])),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(
+      {
+        next: (risultato)=>{
+          console.log('GlobalFeedComponent risultato', risultato);
+          this.articoli.set(risultato.articles);
+        },
+        error: (err)=>{
+          console.log(' error ', err);
+        }
       }
-    })
+    );
+
+    // this.activatedRoute.data.pipe(
+    //   map(datas => datas['articles'] as Article[])
+    // ).subscribe({
+    //   next: (articles)=>{
+    //     this.articoli.set(articles);
+    //   }
+    // })
   }
 
   
