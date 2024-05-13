@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { ArticlesService } from '../../services/articles.service';
 import { ArticleDto, NewArticleDto } from '../../models/article.model';
+import { Store } from '@ngrx/store';
+import { feedActions } from '../../store/feed/feed.actions';
 
 @Component({
   selector: 'app-editor',
@@ -20,7 +22,7 @@ import { ArticleDto, NewArticleDto } from '../../models/article.model';
 export class EditorComponent {
   formGrp: FormGroup;
 
-  articleServices = inject(ArticlesService);
+  store= inject(Store );
 
   constructor(fb: FormBuilder) {
     this.formGrp = fb.nonNullable.group({
@@ -36,8 +38,6 @@ export class EditorComponent {
     const newArticle: NewArticleDto={
         ...this.formGrp.value
     }
-    this.articleServices.postNewArticle(newArticle).subscribe(res=>{
-        console.log(res);
-    })
+    this.store.dispatch(feedActions.createNewPost({newArticle}));
   }
 }

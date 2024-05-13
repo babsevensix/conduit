@@ -7,7 +7,7 @@ import {
   NewUserDtoUserEnvelope,
   UserDtoUserEnvelope,
 } from '../models/users.model';
-import { Observable, tap } from 'rxjs';
+import { Observable, delay, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -49,6 +49,7 @@ export class UserService {
         'http://localhost:5000/Users/Login',
         envelope
       ).pipe(
+          //delay(3000),
           tap(res=>{
               this.Token = res.user?.token ?? null;
           })

@@ -35,7 +35,7 @@ export const routes: Routes = [
       ),
 
     children: routesHomePage,
-    resolve: { articles: ArticlesResolver },
+    //resolve: { articles: ArticlesResolver },
   },
 
   { path: '**', redirectTo: 'sign-in' },

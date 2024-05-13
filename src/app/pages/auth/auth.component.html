@@ -1,4 +1,6 @@
-
+@if(isLoading()){
+  <p>Accesso in corso</p>
+} @else {
   <div class="auth-page">
     <div class="container page">
       <div class="row">
@@ -41,6 +43,9 @@
       </div>
     </div>
   </div>
+}
+  
 
 
-  <app-footer></app-footer>
+
+

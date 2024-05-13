@@ -8,6 +8,10 @@ import { UserService } from '../../services/users.service';
 import { GlobalFeedComponent } from "./components/global-feed/global-feed.component";
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { map } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { selectArticles } from '../../store/feed/feed.reducer';
+import { selectIsAuthenticated } from '../../store/auth/auth.reducer';
 
 @Component({
     selector: 'app-home-page',
@@ -20,12 +24,16 @@ import { map } from 'rxjs';
 })
 export class HomePageComponent {
 
-    private activatedRoute = inject(ActivatedRoute);
+   // private activatedRoute = inject(ActivatedRoute);
     
-    userService = inject(UserService);
+   // userService = inject(UserService);
 
 
-    articoli = signal<Article[] | undefined>(undefined);
+    store = inject(Store);
+
+    isLogged = toSignal(this.store.select(selectIsAuthenticated));
+
+    articoli = toSignal(this.store.select(selectArticles));
 
 
     tagList = computed<string[]>(()=>{
@@ -41,13 +49,13 @@ export class HomePageComponent {
 
 
     constructor(){
-        this.activatedRoute.data.pipe(
-            map(datas => datas['articles'] as Article[])
-          ).subscribe({
-            next: (articles)=>{
-              this.articoli.set(articles);
-            }
-          })
+        // this.activatedRoute.data.pipe(
+        //     map(datas => datas['articles'] as Article[])
+        //   ).subscribe({
+        //     next: (articles)=>{
+        //       this.articoli.set(articles);
+        //     }
+        //   })
     }
 
 

@@ -3,7 +3,7 @@
     <a class="navbar-brand text-conduit hover:cursor-pointer" 
       [routerLink]="'/'">conduit</a>
     <ul class="nav navbar-nav pull-xs-right">
-      @if( userService.Token ){
+      @if( isLoggedIn() ){
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'newpost'" [routerLinkActive]="'active'">
             <i class="ion-compose"></i>&nbsp;New Post

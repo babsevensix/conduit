@@ -1,7 +1,6 @@
 import { Component, inject, input, signal } from '@angular/core';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
-import { NavigationService } from '../../services/navigation.service';
 import { DatePipe } from '@angular/common';
 import { ArticlesService } from '../../services/articles.service';
 import { ActivatedRoute } from '@angular/router';

@@ -3,6 +3,10 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NavigationService } from '../../services/navigation.service';
 import { UserService } from '../../services/users.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { selectIsAuthenticated } from '../../store/auth/auth.reducer';
+import { authActions } from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -13,15 +17,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   
 })
 export class HeaderComponent {
+
+  store = inject(Store);
+
+  isLoggedIn = toSignal(this.store.select(selectIsAuthenticated));
+
   onSignOut() {
-    this.userService.Token = null;
+    this.store.dispatch(authActions.signout());
   }
-  // onSignIn() {
-  //   this.navigationService.pageToView.set('Login');
-  // }
-  // onSignUp() {
-  //   this.navigationService.pageToView.set('Register');
-  // }
-  navigationService = inject(NavigationService);
-  userService = inject(UserService);
+ 
+  //userService = inject(UserService);
 }

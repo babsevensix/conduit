@@ -11,6 +11,12 @@ import { UserService } from '../../services/users.service';
 import { LoginUserDto, NewUserDto } from '../../models/users.model';
 import { NavigationService } from '../../services/navigation.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { authActions } from '../../store/auth/auth.actions';
+import { selectIsSigningIn } from '../../store/auth/auth.reducer';
+import { AsyncPipe } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -18,7 +24,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
   imports: [FooterComponent, HeaderComponent, 
-    ReactiveFormsModule,
+    ReactiveFormsModule, AsyncPipe,
   RouterLink,
 ],
 })
@@ -29,8 +35,13 @@ export class AuthComponent implements OnInit {
 
   private userSerice = inject(UserService);
 
-  navigationService = inject(NavigationService);
+  //navigationService = inject(NavigationService);
+
+  private store = inject(Store);
+
   router= inject(Router);
+
+  isLoading = toSignal( this.store.select(selectIsSigningIn));
 
   constructor(fb: FormBuilder, activatedRoute: ActivatedRoute) {
     this.isSignInForm = activatedRoute.snapshot.data['isSignIn'];
@@ -62,11 +73,20 @@ export class AuthComponent implements OnInit {
             email: this.frmGrp.value.email,
             password: this.frmGrp.value.password
         };
-        this.userSerice.login(userData).subscribe(res=>{
-            console.log(res);
-            // this.router.navigateByUrl('/');
-            this.router.navigate(['/']);
-        })
+        this.store.dispatch(authActions.signin({email: userData.email ?? '', password: userData.password ?? ''}));
+
+        // this.userSerice.login(userData).pipe(
+        //   catchError((err)=>{
+        //     this.store.dispatch(authActions.signinfailure());
+        //     throw new Error(err);
+        //   })
+        // ).subscribe(res=>{
+        //     console.log(res);
+            
+        //     this.store.dispatch(authActions.signinsuccess({token: res.user?.token ?? ''}));
+
+        //     this.router.navigate(['/']);
+        // })
     } else {
       const data: NewUserDto = {
         ...this.frmGrp.value,

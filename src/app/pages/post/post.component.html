@@ -15,7 +15,7 @@
           <a href="profile.html">
             <img [src]="article.author?.image" /></a>
           <div class="info">
-            <a href="profile.html" class="author">{{article.author?.username }}</a>
+            <a href="profile.html" class="author">{{article.author.username }}</a>
             <span class="date">{{article.createdAt | date:'MMMM dd,yyyy'}}</span>
           </div>
           <button class="btn btn-sm btn-outline-secondary">

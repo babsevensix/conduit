@@ -9,6 +9,9 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { UserService } from './users.service';
+import { Store, select } from '@ngrx/store';
+import { selectIsAuthenticated } from '../store/auth/auth.reducer';
+import { map, tap } from 'rxjs';
 
 // @Injectable({providedIn: 'root'})
 // export class AuthGuard implements CanActivate{
@@ -35,12 +38,22 @@ export const AuthGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  const userService = inject(UserService);
+  // const userService = inject(UserService);
   const router = inject(Router);
-  const isLogged = userService.Token != null;
+  // const isLogged = userService.Token != null;
 
-  if (!isLogged) {
-    router.navigateByUrl('/sign-in');
-  }
-  return isLogged;
+  // if (!isLogged) {
+  //   router.navigateByUrl('/sign-in');
+  // }
+  // return isLogged;
+
+  const store = inject(Store);
+  return store.pipe(
+    select(selectIsAuthenticated),
+    tap((isAuthenticated)=>{
+      if (!isAuthenticated){
+        router.navigateByUrl('/sign-in');
+      }
+    })
+  )
 };
